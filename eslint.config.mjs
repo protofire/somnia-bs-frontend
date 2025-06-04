@@ -162,10 +162,7 @@ export default tseslint.config(
       '@typescript-eslint/no-use-before-define': 'off',
       '@typescript-eslint/no-useless-constructor': [ 'error' ],
       '@typescript-eslint/no-explicit-any': [ 'error', { ignoreRestArgs: true } ],
-      '@typescript-eslint/no-unused-expressions': [ 'error', {
-        allowShortCircuit: true,
-        allowTernary: true,
-      } ],
+      '@typescript-eslint/no-unused-expressions': [ 'off' ],
     },
   },
   {
