@@ -27,6 +27,11 @@ type Props = {
 const ChartsWidgetsList = ({ filterQuery, isError, isPlaceholderData, charts, interval, initialFilterQuery }: Props) => {
   const [ isSomeChartLoadingError, setIsSomeChartLoadingError ] = useState(false);
   const isAnyChartDisplayed = charts?.some((section) => section.charts.length > 0);
+
+  // eslint-disable-next-line no-console
+  console.log('iacd', isAnyChartDisplayed);
+  // eslint-disable-next-line no-console
+  console.log(charts);
   const isEmptyChartList = Boolean(filterQuery) && !isAnyChartDisplayed;
   const sectionRef = React.useRef<HTMLUListElement | null>(null);
 
