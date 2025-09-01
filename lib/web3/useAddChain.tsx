@@ -22,7 +22,7 @@ function getParams(): AddEthereumChainParameter {
       decimals: config.chain.currency.decimals ?? 18,
     },
     rpcUrls: config.chain.rpcUrls,
-    blockExplorerUrls: [ config.app.baseUrl ],
+    blockExplorerUrls: [ config.app.blockExplorerUrl ],
   };
 }
 

@@ -12,6 +12,7 @@ const baseUrl = [
 const isDev = getEnvValue('NEXT_PUBLIC_APP_ENV') === 'development';
 const isPw = getEnvValue('NEXT_PUBLIC_APP_INSTANCE') === 'pw';
 const spriteHash = getEnvValue('NEXT_PUBLIC_ICON_SPRITE_HASH');
+const blockExplorerUrl = getEnvValue('NEXT_PUBLIC_BLOCK_EXPLORER_URL') || getEnvValue('NEXT_PUBLIC_APP_HOST');
 
 const app = Object.freeze({
   isDev,
@@ -22,6 +23,7 @@ const app = Object.freeze({
   baseUrl,
   useProxy: getEnvValue('NEXT_PUBLIC_USE_NEXT_JS_PROXY') === 'true',
   spriteHash,
+  blockExplorerUrl: blockExplorerUrl as string,
 });
 
 export default app;
