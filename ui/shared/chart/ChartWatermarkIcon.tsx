@@ -16,7 +16,7 @@ const ChartWatermarkIcon = (props: IconProps) => {
       left="50%"
       transform="translate(-50%, -50%)"
       pointerEvents="none"
-      viewBox="0 0 114 20"
+      viewBox="0 0 114 25"
       color={{ _light: 'link', _dark: 'white' }}
     />
   );
