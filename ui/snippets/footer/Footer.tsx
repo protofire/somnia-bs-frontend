@@ -69,7 +69,7 @@ const Footer = () => {
           </Link>
         </Flex>
         <Text mt={ 3 } fontSize="xs">
-          Explore transactions, accounts, Data Liquidity Pools, gas fees and other network activity within the blockchain.
+          Explore blocks, transactions, accounts, gas fees and other network activity within the blockchain.
         </Text>
         <Box mt={ 6 } alignItems="start" textStyle="xs">
           { apiVersionUrl && (
