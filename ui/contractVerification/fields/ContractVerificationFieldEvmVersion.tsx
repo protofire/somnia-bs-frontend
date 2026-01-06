@@ -9,6 +9,23 @@ import { FormFieldSelect } from 'toolkit/components/forms/fields/FormFieldSelect
 
 import ContractVerificationFormRow from '../ContractVerificationFormRow';
 
+// Solidity EVM version labels with default compiler version info
+const EVM_VERSION_LABELS: Record<string, string> = {
+  homestead: 'homestead (oldest version)',
+  tangerineWhistle: 'tangerineWhistle',
+  spuriousDragon: 'spuriousDragon',
+  byzantium: 'byzantium (default for <= v0.5.4)',
+  constantinople: 'constantinople',
+  petersburg: 'petersburg (default for >= v0.5.5)',
+  istanbul: 'istanbul (default for >= v0.5.14)',
+  berlin: 'berlin (default for >= v0.8.5)',
+  london: 'london (default for >= v0.8.7)',
+  paris: 'paris (default for >= v0.8.18)',
+  shanghai: 'shanghai (default for >= v0.8.20)',
+  cancun: 'cancun (default for >= v0.8.24)',
+  prague: 'prague (default for >= v0.8.30)',
+};
+
 interface Props {
   isVyper?: boolean;
   config: SmartContractVerificationConfig;
@@ -16,7 +33,11 @@ interface Props {
 
 const ContractVerificationFieldEvmVersion = ({ isVyper, config }: Props) => {
   const collection = React.useMemo(() => {
-    const items = (isVyper ? config?.vyper_evm_versions : config?.solidity_evm_versions)?.map((option) => ({ label: option, value: option })) || [];
+    const items = (isVyper ? config?.vyper_evm_versions : config?.solidity_evm_versions)?.map((option) => {
+      // Only apply labels for Solidity, keep Vyper labels unchanged
+      const label = !isVyper && EVM_VERSION_LABELS[option] ? EVM_VERSION_LABELS[option] : option;
+      return { label, value: option };
+    }) || [];
 
     return createListCollection({ items });
   }, [ config?.solidity_evm_versions, config?.vyper_evm_versions, isVyper ]);
