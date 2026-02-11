@@ -14,34 +14,42 @@ import { SORT_OPTIONS } from './useTxsSort';
 
 type Props = {
   sorting: TransactionsSortingValue;
-  setSorting: (val: TransactionsSortingValue) => void;
+  setSorting?: (val: TransactionsSortingValue) => void;
   paginationProps: PaginationParams;
   className?: string;
   showPagination?: boolean;
   filterComponent?: React.ReactNode;
   linkSlot?: React.ReactNode;
+  tableViewButton?: React.ReactNode;
 };
 
 const collection = createListCollection({
   items: SORT_OPTIONS,
 });
 
-const TxsHeaderMobile = ({ filterComponent, sorting, setSorting, paginationProps, className, showPagination = true, linkSlot }: Props) => {
+const TxsHeaderMobile = ({ filterComponent, sorting, setSorting, paginationProps, className, showPagination = true, linkSlot, tableViewButton }: Props) => {
   const handleSortValueChange = React.useCallback(({ value }: { value: Array<string> }) => {
-    setSorting(value[0] as TransactionsSortingValue);
+    setSorting?.(value[0] as TransactionsSortingValue);
   }, [ setSorting ]);
+
+  if (!filterComponent && !setSorting && !linkSlot && !showPagination && !tableViewButton) {
+    return null;
+  }
 
   return (
     <ActionBar className={ className }>
       <HStack>
+        { tableViewButton }
         { filterComponent }
-        <Sort
-          name="transactions_sorting"
-          defaultValue={ [ sorting ] }
-          collection={ collection }
-          onValueChange={ handleSortValueChange }
-          isLoading={ paginationProps.isLoading }
-        />
+        { setSorting && (
+          <Sort
+            name="transactions_sorting"
+            defaultValue={ [ sorting ] }
+            collection={ collection }
+            onValueChange={ handleSortValueChange }
+            isLoading={ paginationProps.isLoading }
+          />
+        ) }
         { /* api is not implemented */ }
         { /* <FilterInput
           // eslint-disable-next-line react/jsx-no-bind

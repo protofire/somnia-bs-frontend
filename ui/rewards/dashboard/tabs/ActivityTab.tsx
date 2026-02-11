@@ -1,6 +1,8 @@
 import { Flex, Text, chakra } from '@chakra-ui/react';
 import { useCallback, useMemo, useState } from 'react';
 
+import { getFeaturePayload } from 'configs/app/features/types';
+
 import { route } from 'nextjs-routes';
 
 import config from 'configs/app';
@@ -25,6 +27,7 @@ import RewardsInstancesModal from '../RewardsInstancesModal';
 import RewardsTaskDetailsModal from '../RewardsTaskDetailsModal';
 
 const feature = config.features.rewards;
+const marketplaceFeature = getFeaturePayload(config.features.marketplace);
 
 function getMaxAmount(rewards: Record<string, string> | undefined) {
   if (!rewards) {
@@ -113,11 +116,14 @@ export default function ActivityTab() {
         description: (
           <>
             Use Blockscout tools like{ ' ' }
-            <Link external href="https://revoke.blockscout.com?utm_source=blockscout&utm_medium=transactions-task">
-              Revokescout
-            </Link> or{ ' ' }
-            <Link external href="https://swap.blockscout.com?utm_source=blockscout&utm_medium=transactions-task">
-              Swapscout
+            <Link
+              external={ !marketplaceFeature?.essentialDapps }
+              href={ marketplaceFeature?.essentialDapps ?
+                route({ pathname: '/apps' }) :
+                'https://eth.blockscout.com/apps?utm_source=blockscout&utm_medium=transactions-task'
+              }
+            >
+              Essential dapps
             </Link>, or{ ' ' }
             <Link href={ route({ pathname: '/verified-contracts' }) }>
               interact with smart contracts
@@ -242,7 +248,7 @@ export default function ActivityTab() {
             order={{ base: 3, md: 'auto' }}
             px={{ base: 1.5, md: 0 }}
           >
-            <IconSvg name="status/warning" boxSize={ 6 } color="gray.500"/>
+            <IconSvg name="status/warning" boxSize={ 6 } color="icon.primary"/>
             <Text textStyle="sm">
               <chakra.span fontWeight="600">Your current Merit count is not final!</chakra.span><br/>
               Merits are calculated based on the activity of all users and may increase or decrease by the end of the weekly period.

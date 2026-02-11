@@ -8,14 +8,15 @@ import React from 'react';
 import type { NextPageWithLayout } from 'nextjs/types';
 
 import config from 'configs/app';
+import getSocketUrl from 'lib/api/getSocketUrl';
 import useQueryClientConfig from 'lib/api/useQueryClientConfig';
 import { AppContextProvider } from 'lib/contexts/app';
 import { MarketplaceContextProvider } from 'lib/contexts/marketplace';
 import { RewardsContextProvider } from 'lib/contexts/rewards';
-import { ScrollDirectionProvider } from 'lib/contexts/scrollDirection';
 import { SettingsContextProvider } from 'lib/contexts/settings';
 import { initGrowthBook } from 'lib/growthbook/init';
 import useLoadFeatures from 'lib/growthbook/useLoadFeatures';
+import usePageViewTracking from 'lib/monitoring/usePageViewTracking';
 import { clientConfig as rollbarConfig, Provider as RollbarProvider } from 'lib/rollbar';
 import { SocketProvider } from 'lib/socket/context';
 import { Provider as ChakraProvider } from 'toolkit/chakra/provider';
@@ -48,12 +49,29 @@ const ERROR_SCREEN_STYLES: HTMLChakraProps<'div'> = {
   p: { base: 4, lg: 0 },
 };
 
+const CONSOLE_SCAM_WARNING = `⚠️WARNING: Do not paste or execute any scripts here!
+Anyone asking you to run code here might be trying to scam you and steal your data.
+If you don't understand what this console is for, close it now and stay safe.`;
+
+const CONSOLE_SCAM_WARNING_DELAY_MS = 500;
+
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   const growthBook = initGrowthBook(pageProps.uuid);
   useLoadFeatures(growthBook);
+  usePageViewTracking(pageProps.referrer);
 
   const queryClient = useQueryClientConfig();
+
+  React.useEffect(() => {
+    // after the app is rendered/hydrated, show the console scam warning
+    const timeoutId = window.setTimeout(() => {
+      // eslint-disable-next-line no-console
+      console.warn(CONSOLE_SCAM_WARNING);
+    }, CONSOLE_SCAM_WARNING_DELAY_MS);
+
+    return () => window.clearTimeout(timeoutId);
+  }, []);
 
   const content = (() => {
     const getLayout = Component.getLayout ?? ((page) => <Layout>{ page }</Layout>);
@@ -72,6 +90,8 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     );
   })();
 
+  const socketUrl = !config.features.opSuperchain.isEnabled ? getSocketUrl() : undefined;
+
   return (
     <ChakraProvider>
       <RollbarProvider config={ rollbarConfig }>
@@ -83,17 +103,15 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
             <AppContextProvider pageProps={ pageProps }>
               <QueryClientProvider client={ queryClient }>
                 <GrowthBookProvider growthbook={ growthBook }>
-                  <ScrollDirectionProvider>
-                    <SocketProvider url={ `${ config.apis.general.socketEndpoint }${ config.apis.general.basePath ?? '' }/socket/v2` }>
-                      <RewardsContextProvider>
-                        <MarketplaceContextProvider>
-                          <SettingsContextProvider>
-                            { content }
-                          </SettingsContextProvider>
-                        </MarketplaceContextProvider>
-                      </RewardsContextProvider>
-                    </SocketProvider>
-                  </ScrollDirectionProvider>
+                  <SocketProvider url={ socketUrl }>
+                    <RewardsContextProvider>
+                      <MarketplaceContextProvider>
+                        <SettingsContextProvider>
+                          { content }
+                        </SettingsContextProvider>
+                      </MarketplaceContextProvider>
+                    </RewardsContextProvider>
+                  </SocketProvider>
                 </GrowthBookProvider>
                 <ReactQueryDevtools buttonPosition="bottom-left" position="left"/>
                 <GoogleAnalytics/>
