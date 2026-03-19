@@ -5,6 +5,7 @@ import React from 'react';
 import config from 'configs/app';
 import useApiQuery from 'lib/api/useApiQuery';
 import { Link } from 'toolkit/chakra/link';
+import IconSvg from 'ui/shared/IconSvg';
 import { CONTENT_MAX_WIDTH } from 'ui/shared/layout/utils';
 import NetworkAddToWallet from 'ui/shared/NetworkAddToWallet';
 
@@ -57,9 +58,23 @@ const Footer = () => {
   }, []);
 
   const renderProjectInfo = React.useCallback((gridArea?: GridProps['gridArea']) => {
+    const logoColor = { base: 'blue.600', _dark: 'white' };
 
     return (
       <Box gridArea={ gridArea }>
+        <Flex columnGap={ 2 } textStyle="xs" alignItems="center">
+          <span>Made with</span>
+          <Link
+            href="https://www.blockscout.com"
+            external
+            noIcon
+            display="inline-flex"
+            color={ logoColor }
+            _hover={{ color: logoColor }}
+          >
+            <IconSvg name="networks/logo-placeholder-blockscout" width="80px" height={ 4 }/>
+          </Link>
+        </Flex>
         <Flex columnGap={ 2 } textStyle="xs" alignItems="center" lineHeight={ 5 } color="text">
           <Link
             external
