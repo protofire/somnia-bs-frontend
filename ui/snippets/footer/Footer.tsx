@@ -89,21 +89,7 @@ const Footer = () => {
             <IconSvg name="networks/logo-placeholder-blockscout" width="80px" height={ 4 }/>
           </Link>
         </Flex>
-        <Flex columnGap={ 2 } textStyle="xs" alignItems="center" lineHeight={ 5 } color="text">
-          <Link
-            external
-            href="https://somnia.network"
-            display="inline-flex"
-            color={{ base: 'blue.600', _dark: 'white' }}
-            _hover={{ color: { base: 'blue.600', _dark: 'white' } }}
-          >
-            somnia.network
-          </Link>
-        </Flex>
-        <Text mt={ 3 } fontSize="xs">
-          Explore blocks, transactions, accounts, gas fees and other network activity within the blockchain.
-        </Text>
-        <Box mt={ 6 } alignItems="start" textStyle="xs">
+        <Box mt={ 2 } alignItems="start" textStyle="xs">
           { apiVersionUrl && (
             <Text>
               Backend: <Link href={ apiVersionUrl } external noIcon>{ backendVersionData?.backend_version }</Link>
@@ -118,6 +104,20 @@ const Footer = () => {
             Copyright { copy } Blockscout Limited 2023-{ (new Date()).getFullYear() }
           </Text>
         </Box>
+        <Flex columnGap={ 2 } textStyle="xs" alignItems="center" lineHeight={ 5 } color="text" mt={ 3 }>
+          <Link
+            external
+            href="https://somnia.network"
+            display="inline-flex"
+            color={{ base: 'blue.600', _dark: 'white' }}
+            _hover={{ color: { base: 'blue.600', _dark: 'white' } }}
+          >
+            somnia.network
+          </Link>
+        </Flex>
+        <Text mt={ 3 } fontSize="xs">
+          Explore blocks, transactions, accounts, gas fees and other network activity within the blockchain.
+        </Text>
       </Box>
     );
   }, [ apiVersionUrl, backendVersionData?.backend_version, frontendLink ]);
