@@ -5,6 +5,7 @@ import React from 'react';
 import config from 'configs/app';
 import useApiQuery from 'lib/api/useApiQuery';
 import { Link } from 'toolkit/chakra/link';
+import { copy } from 'toolkit/utils/htmlEntities';
 import IconSvg from 'ui/shared/IconSvg';
 import { CONTENT_MAX_WIDTH } from 'ui/shared/layout/utils';
 import NetworkAddToWallet from 'ui/shared/NetworkAddToWallet';
@@ -12,6 +13,9 @@ import NetworkAddToWallet from 'ui/shared/NetworkAddToWallet';
 import FooterLinkItem from './FooterLinkItem';
 import IntTxsIndexingStatus from './IntTxsIndexingStatus';
 import getApiVersionUrl from './utils/getApiVersionUrl';
+
+const FRONT_VERSION_URL = `https://github.com/protofire/somnia-bs-frontend/tree/${ config.UI.footer.frontendVersion }`;
+const FRONT_COMMIT_URL = `https://github.com/protofire/somnia-bs-frontend/commit/${ config.UI.footer.frontendCommit }`;
 
 const Footer = () => {
 
@@ -23,6 +27,16 @@ const Footer = () => {
   });
   const apiVersionUrl = getApiVersionUrl(backendVersionData?.backend_version);
   // const issueUrl = useIssueUrl(backendVersionData?.backend_version);
+
+  const frontendLink = (() => {
+    if (config.UI.footer.frontendVersion) {
+      return <Link href={ FRONT_VERSION_URL } external noIcon>{ config.UI.footer.frontendVersion }</Link>;
+    }
+    if (config.UI.footer.frontendCommit) {
+      return <Link href={ FRONT_COMMIT_URL } external noIcon>{ config.UI.footer.frontendCommit }</Link>;
+    }
+    return null;
+  })();
 
   const BLOCKSCOUT_LINKS = [
     {
@@ -95,10 +109,18 @@ const Footer = () => {
               Backend: <Link href={ apiVersionUrl } external noIcon>{ backendVersionData?.backend_version }</Link>
             </Text>
           ) }
+          { frontendLink && (
+            <Text>
+              Frontend: { frontendLink }
+            </Text>
+          ) }
+          <Text>
+            Copyright { copy } Blockscout Limited 2023-{ (new Date()).getFullYear() }
+          </Text>
         </Box>
       </Box>
     );
-  }, [ apiVersionUrl, backendVersionData?.backend_version ]);
+  }, [ apiVersionUrl, backendVersionData?.backend_version, frontendLink ]);
 
   const containerProps: HTMLChakraProps<'div'> = {
     as: 'footer',
