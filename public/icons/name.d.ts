@@ -141,6 +141,7 @@
 	| "navigation/withdrawals"
 	| "networks"
 	| "networks/icon-placeholder"
+	| "networks/logo-placeholder-blockscout"
 	| "networks/logo-placeholder"
 	| "nft_shield"
 	| "open-link"
