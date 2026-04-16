@@ -25,7 +25,12 @@ const moduleExports = {
     );
     config.resolve.fallback = { fs: false, net: false, tls: false };
     config.externals.push('pino-pretty', 'lokijs', 'encoding');
-    
+
+    // @wagmi/core/tempo only exists in wagmi v3; this project uses v2.
+    // Stub it out so @reown/appkit-adapter-wagmi's nested @wagmi/connectors@8.x
+    // can resolve the re-exported `tempoWallet` without breaking the build.
+    config.resolve.alias['@wagmi/core/tempo'] = require.resolve('./stubs/wagmiCoreTempoStub.js');
+
     config.experiments = { ...config.experiments, topLevelAwait: true };
     // Tell webpack the target supports async/await so it stops warning about top-level await
     // Top-level await is belong to ES2017 specification that is adopted by all major browsers and Node.js.
