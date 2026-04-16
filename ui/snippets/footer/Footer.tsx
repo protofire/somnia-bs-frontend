@@ -22,11 +22,11 @@ const Footer = () => {
   const { data: backendVersionData } = useApiQuery('general:config_backend_version', {
     queryOptions: {
       staleTime: Infinity,
-      enabled: !config.features.opSuperchain.isEnabled,
+      enabled: !config.features.multichain.isEnabled,
+      refetchOnMount: false,
     },
   });
   const apiVersionUrl = getApiVersionUrl(backendVersionData?.backend_version);
-  // const issueUrl = useIssueUrl(backendVersionData?.backend_version);
 
   const frontendLink = (() => {
     if (config.UI.footer.frontendVersion) {
@@ -66,7 +66,7 @@ const Footer = () => {
         _empty={{ display: 'none' }}
       >
         { !config.UI.indexingAlert.intTxs.isHidden && <IntTxsIndexingStatus/> }
-        { !config.features.opSuperchain.isEnabled && <NetworkAddToWallet source="Footer"/> }
+        { !config.features.multichain.isEnabled && <NetworkAddToWallet source="Footer"/> }
       </Flex>
     );
   }, []);
@@ -142,7 +142,7 @@ const Footer = () => {
   };
 
   const renderRecaptcha = (gridArea?: GridProps['gridArea']) => {
-    // Disabling captch copy since its disabled
+    // Disabling captcha copy since its disabled
     if (!config.services.reCaptchaV2.siteKey || true) { // eslint-disable-line
       return <Box gridArea={ gridArea }/>;
     }
