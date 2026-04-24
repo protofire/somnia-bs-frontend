@@ -3,49 +3,47 @@ import React from 'react';
 
 import { route } from 'nextjs-routes';
 
-import config from 'configs/app';
 import { useColorModeValue } from 'toolkit/chakra/color-mode';
 import { Image } from 'toolkit/chakra/image';
-import IconSvg from 'ui/shared/IconSvg';
-
-import { INVERT_FILTER } from './consts';
-
-const LogoFallback = () => {
-  return (
-    <IconSvg
-      name="networks/logo-placeholder"
-      width="120px"
-      height="24px"
-      color={{ base: 'blue.600', _dark: 'white' }}
-      aria-label="Network logo placeholder"
-    />
-  );
-};
 
 type Props = {
   className?: string;
 };
 
 const NetworkLogo = ({ className }: Props) => {
-
-  const logoSrc = useColorModeValue(config.UI.navigation.logo.default, config.UI.navigation.logo.dark || config.UI.navigation.logo.default);
+  const logoSrc = useColorModeValue(
+    '/assets/logo/somnia-logomark-dark.svg',
+    '/assets/logo/somnia-logomark-light.svg',
+  );
+  const textColor = useColorModeValue('#070707', '#F5F5F5');
 
   return (
     <chakra.a
       className={ className }
       href={ route({ pathname: '/' }) }
       aria-label="Link to main page"
+      display="flex"
+      alignItems="center"
+      gap="2"
     >
       <Image
         h="24px"
-        skeletonWidth="120px"
+        w="auto"
+        skeletonWidth="24px"
         src={ logoSrc }
-        alt={ `${ config.chain.name } network logo` }
-        fallback={ <LogoFallback/> }
-        filter={{ _dark: !config.UI.navigation.logo.dark ? INVERT_FILTER : undefined }}
+        alt="Somnia logomark"
         objectFit="contain"
-        objectPosition="left"
       />
+      <chakra.span
+        fontFamily="'Source Code Pro', monospace"
+        fontSize="20px"
+        fontWeight="500"
+        color={ textColor }
+        lineHeight="1"
+        userSelect="none"
+      >
+        somnia
+      </chakra.span>
     </chakra.a>
   );
 };

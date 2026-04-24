@@ -57,6 +57,19 @@ const moduleExports = {
       'static': 180,
     },
   },
+  turbopack: {
+    // @wagmi/core/tempo only exists in wagmi v3; this project uses v2.
+    // Same stub as the webpack alias above — needed separately for Turbopack.
+    resolveAlias: {
+      '@wagmi/core/tempo': './stubs/wagmiCoreTempoStub.js',
+    },
+    rules: {
+      "*.svg": {
+        loaders: ["@svgr/webpack"],
+        as: "*.js",
+      },
+    },
+  },
 };
 
 module.exports = withBundleAnalyzer(withRoutes(moduleExports));

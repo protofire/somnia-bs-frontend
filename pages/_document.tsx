@@ -43,6 +43,10 @@ class MyDocument extends Document {
             href={ config.UI.fonts.body?.url ?? 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap' }
             rel="stylesheet"
           />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;700&display=swap"
+            rel="stylesheet"
+          />
 
           { /* eslint-disable-next-line @next/next/no-sync-scripts */ }
           <script src="/assets/envs.js"/>

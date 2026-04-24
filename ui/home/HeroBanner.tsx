@@ -11,8 +11,15 @@ import SearchBar from 'ui/snippets/searchBar/SearchBarDesktop';
 import SearchBarMobile from 'ui/snippets/searchBar/SearchBarMobile';
 import UserProfileDesktop from 'ui/snippets/user/UserProfileDesktop';
 
+// Light: bold diagonal purple → Dreamdex blue
 export const BACKGROUND_DEFAULT =
-  'radial-gradient(103.03% 103.03% at 0% 0%, rgba(183, 148, 244, 0.8) 0%, rgba(0, 163, 196, 0.8) 100%), var(--chakra-colors-blue-400)';
+  'linear-gradient(135deg, #771BE8 0%, #401CFD 100%)';
+// Dark: strong radial glows from both sides over a deep purple-black base.
+// Uses rgba(…,0) instead of `transparent` to avoid the grey banding artifact.
+const BACKGROUND_DEFAULT_DARK =
+  'radial-gradient(ellipse at 100% 50%, rgba(64, 28, 253, 0.9) 0%, rgba(64, 28, 253, 0) 65%), ' +
+  'radial-gradient(ellipse at 0% 50%, rgba(119, 27, 232, 0.95) 0%, rgba(119, 27, 232, 0) 65%), ' +
+  '#0D0020';
 const TEXT_COLOR_DEFAULT = 'white';
 const BORDER_DEFAULT = 'none';
 
@@ -27,7 +34,7 @@ const HeroBanner = () => {
     _dark:
       config.UI.homepage.heroBanner?.background?.[1] ||
       config.UI.homepage.heroBanner?.background?.[0] ||
-      BACKGROUND_DEFAULT,
+      BACKGROUND_DEFAULT_DARK,
   };
 
   const textColor = {

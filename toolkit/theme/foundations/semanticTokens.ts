@@ -39,7 +39,7 @@ const semanticTokens: ThemingConfig['semanticTokens'] = {
 
     // FOUNDATIONS
     heading: {
-      DEFAULT: { value: { _light: '{colors.blackAlpha.800}', _dark: '{colors.whiteAlpha.800}' } },
+      DEFAULT: { value: { _light: '{colors.gray.800}', _dark: '{colors.whiteAlpha.800}' } },
     },
     text: {
       primary: { value: { _light: '{colors.theme.text.primary._light}', _dark: '{colors.theme.text.primary._dark}' } },

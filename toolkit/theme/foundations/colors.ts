@@ -8,39 +8,39 @@ const DEFAULT_THEME_COLORS = {
       // for some reason links to colors.white and colors.black variables are not working here
       // so we use hex values instead
       // but it is not the case for other colors
-      _light: { value: '#FFFFFF' }, // colors.white
-      _dark: { value: '#101112' }, // colors.black
+      _light: { value: '#F5F5F5' }, // Somnia off-white
+      _dark: { value: '#070707' }, // Somnia dark
     },
   },
   text: {
     primary: {
-      _light: { value: '{colors.blackAlpha.800}' },
+      _light: { value: '{colors.gray.700}' }, // #252525
       _dark: { value: '{colors.whiteAlpha.800}' },
     },
     secondary: {
-      _light: { value: '{colors.gray.500}' },
+      _light: { value: '{colors.gray.500}' }, // #4C4C4C
       _dark: { value: '{colors.gray.400}' },
     },
   },
   hover: {
-    _light: { value: '{colors.blue.400}' },
-    _dark: { value: '{colors.blue.400}' },
+    _light: { value: '{colors.purple.400}' },
+    _dark: { value: '{colors.purple.400}' },
   },
   selected: {
     control: {
       text: {
-        _light: { value: '{colors.blue.700}' },
+        _light: { value: '{colors.purple.700}' },
         _dark: { value: '{colors.gray.50}' },
       },
       bg: {
-        _light: { value: '{colors.blue.50}' },
+        _light: { value: '{colors.purple.50}' },
         _dark: { value: '{colors.whiteAlpha.50}' },
       },
     },
     option: {
       bg: {
-        _light: { value: '{colors.blue.500}' },
-        _dark: { value: '{colors.blue.500}' },
+        _light: { value: '{colors.purple.500}' },
+        _dark: { value: '{colors.purple.500}' },
       },
     },
   },
@@ -56,8 +56,8 @@ const DEFAULT_THEME_COLORS = {
   },
   button: {
     primary: {
-      _light: { value: '{colors.blue.600}' },
-      _dark: { value: '{colors.blue.600}' },
+      _light: { value: '{colors.purple.500}' },
+      _dark: { value: '{colors.purple.500}' },
       text: {
         _light: { value: '{colors.white}' },
         _dark: { value: '{colors.white}' },
@@ -66,36 +66,36 @@ const DEFAULT_THEME_COLORS = {
   },
   link: {
     primary: {
-      _light: { value: '{colors.blue.600}' },
-      _dark: { value: '{colors.blue.300}' },
+      _light: { value: '{colors.purple.500}' },
+      _dark: { value: '{colors.purple.300}' },
     },
   },
   graph: {
     line: {
-      _light: { value: '{colors.blue.500}' },
-      _dark: { value: '{colors.blue.200}' },
+      _light: { value: '{colors.purple.500}' },
+      _dark: { value: '{colors.purple.300}' },
     },
     gradient: {
       start: {
-        _light: { value: 'rgba(144, 205, 244, 0.3)' }, // blue.200 with opacity 0.3
-        _dark: { value: 'rgba(144, 205, 244, 0.3)' }, // blue.200 with opacity 0.3
+        _light: { value: 'rgba(119, 27, 232, 0.3)' }, // purple.500 with opacity 0.3
+        _dark: { value: 'rgba(119, 27, 232, 0.3)' }, // purple.500 with opacity 0.3
       },
       stop: {
-        _light: { value: 'rgba(144, 205, 244, 0)' }, // blue.200 with opacity 0
-        _dark: { value: 'rgba(144, 205, 244, 0)' }, // blue.200 with opacity 0
+        _light: { value: 'rgba(119, 27, 232, 0)' }, // purple.500 with opacity 0
+        _dark: { value: 'rgba(119, 27, 232, 0)' }, // purple.500 with opacity 0
       },
     },
   },
   navigation: {
     bg: {
       selected: {
-        _light: { value: '{colors.blue.50}' },
+        _light: { value: '{colors.purple.50}' },
         _dark: { value: '{colors.gray.800}' },
       },
     },
     text: {
       selected: {
-        _light: { value: '{colors.blue.700}' },
+        _light: { value: '{colors.purple.700}' },
         _dark: { value: '{colors.gray.50}' },
       },
     },
@@ -115,8 +115,8 @@ const DEFAULT_THEME_COLORS = {
   tabs: {
     text: {
       primary: {
-        _light: { value: '{colors.blue.700}' },
-        _dark: { value: '{colors.blue.100}' },
+        _light: { value: '{colors.purple.700}' },
+        _dark: { value: '{colors.purple.200}' },
       },
     },
   },
@@ -185,16 +185,16 @@ const colors = {
     '900': { value: '#5F370E' },
   },
   gray: {
-    '50': { value: '#F7FAFC' },
-    '100': { value: '#EDF2F7' },
-    '200': { value: '#E2E8F0' },
-    '300': { value: '#CBD5E0' },
-    '400': { value: '#A0AEC0' },
-    '500': { value: '#718096' },
-    '600': { value: '#4A5568' },
-    '700': { value: '#2D3748' },
-    '800': { value: '#1A202C' },
-    '900': { value: '#171923' },
+    '50': { value: '#F5F5F5' }, // off-white
+    '100': { value: '#E6E6E6' }, // light panels / borders
+    '200': { value: '#C8C8C8' },
+    '300': { value: '#A5A5A5' },
+    '400': { value: '#7A7A7A' },
+    '500': { value: '#4C4C4C' }, // secondary text / icons
+    '600': { value: '#383838' },
+    '700': { value: '#252525' }, // primary body text
+    '800': { value: '#111111' }, // headings
+    '900': { value: '#070707' }, // darkest
   },
   teal: {
     '50': { value: '#E6FFFA' },
@@ -222,15 +222,15 @@ const colors = {
   },
   purple: {
     '50': { value: '#FAF5FF' },
-    '100': { value: '#E9D8FD' },
-    '200': { value: '#D6BCFA' },
-    '300': { value: '#B794F4' },
-    '400': { value: '#9F7AEA' },
-    '500': { value: '#805AD5' },
-    '600': { value: '#6B46C1' },
-    '700': { value: '#553C9A' },
-    '800': { value: '#44337A' },
-    '900': { value: '#322659' },
+    '100': { value: '#EDD8FF' },
+    '200': { value: '#CFA0FF' },
+    '300': { value: '#B06AFF' },
+    '400': { value: '#9344EE' },
+    '500': { value: '#771BE8' }, // Somnia primary purple
+    '600': { value: '#6012C9' },
+    '700': { value: '#4A0DA0' },
+    '800': { value: '#360B76' },
+    '900': { value: '#22064C' },
   },
   pink: {
     '50': { value: '#FFF5F7' },
@@ -244,7 +244,7 @@ const colors = {
     '800': { value: '#702459' },
     '900': { value: '#521B41' },
   },
-  black: { value: '#101112' },
+  black: { value: '#070707' }, // Somnia dark
   white: { value: '#ffffff' },
   whiteAlpha: {
     '50': { value: 'RGBA(255, 255, 255, 0.04)' },
