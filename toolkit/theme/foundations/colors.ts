@@ -33,7 +33,7 @@ const DEFAULT_THEME_COLORS = {
         _dark: { value: '{colors.gray.50}' },
       },
       bg: {
-        _light: { value: '{colors.purple.50}' },
+        _light: { value: '{colors.purple.100}' }, // purple.50 = #FAF5FF ≈ bg, use 100 for contrast
         _dark: { value: '{colors.whiteAlpha.50}' },
       },
     },
@@ -89,7 +89,7 @@ const DEFAULT_THEME_COLORS = {
   navigation: {
     bg: {
       selected: {
-        _light: { value: '{colors.purple.50}' },
+        _light: { value: '{colors.purple.100}' }, // purple.50 = #FAF5FF ≈ bg, use 100 for contrast
         _dark: { value: '{colors.gray.800}' },
       },
     },
@@ -102,13 +102,13 @@ const DEFAULT_THEME_COLORS = {
   },
   stats: {
     bg: {
-      _light: { value: '{colors.gray.50}' },
+      _light: { value: '{colors.gray.100}' }, // gray.50 = #F5F5F5 = page bg, use 100 for contrast
       _dark: { value: '{colors.whiteAlpha.100}' },
     },
   },
   topbar: {
     bg: {
-      _light: { value: '{colors.gray.50}' },
+      _light: { value: '{colors.gray.100}' }, // gray.50 = #F5F5F5 = page bg, use 100 for contrast
       _dark: { value: '{colors.whiteAlpha.100}' },
     },
   },

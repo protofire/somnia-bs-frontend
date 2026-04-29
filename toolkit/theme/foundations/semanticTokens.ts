@@ -119,7 +119,7 @@ const semanticTokens: ThemingConfig['semanticTokens'] = {
       },
       icon_background: {
         bg: {
-          DEFAULT: { value: { _light: '{colors.gray.50}', _dark: '{colors.whiteAlpha.50}' } },
+          DEFAULT: { value: { _light: '{colors.gray.100}', _dark: '{colors.whiteAlpha.50}' } },
         },
       },
       pagination: {
