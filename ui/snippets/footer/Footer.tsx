@@ -38,16 +38,6 @@ const Footer = () => {
     return null;
   })();
 
-  const frontendLink = (() => {
-    if (config.UI.footer.frontendVersion) {
-      return <Link href={ FRONT_VERSION_URL } external noIcon>{ config.UI.footer.frontendVersion }</Link>;
-    }
-    if (config.UI.footer.frontendCommit) {
-      return <Link href={ FRONT_COMMIT_URL } external noIcon>{ config.UI.footer.frontendCommit }</Link>;
-    }
-    return null;
-  })();
-
   const BLOCKSCOUT_LINKS = [
     {
       icon: 'social/twitter' as const,
