@@ -3,24 +3,8 @@ import React from 'react';
 
 import { route } from 'nextjs-routes';
 
-import config from 'configs/app';
 import { useColorModeValue } from 'toolkit/chakra/color-mode';
 import { Image } from 'toolkit/chakra/image';
-import IconSvg from 'ui/shared/IconSvg';
-
-import { INVERT_FILTER } from './consts';
-
-const IconFallback = () => {
-  return (
-    <IconSvg
-      name="networks/icon-placeholder"
-      w="30px"
-      h="30px"
-      color={{ base: 'blue.600', _dark: 'white' }}
-      aria-label="Network icon placeholder"
-    />
-  );
-};
 
 type Props = {
   className?: string;
@@ -28,7 +12,10 @@ type Props = {
 
 const NetworkIcon = ({ className }: Props) => {
 
-  const iconSrc = useColorModeValue(config.UI.navigation.icon.default, config.UI.navigation.icon.dark || config.UI.navigation.icon.default);
+  const iconSrc = useColorModeValue(
+    '/assets/logo/somnia-logomark-dark.svg',
+    '/assets/logo/somnia-logomark-light.svg',
+  );
 
   return (
     <chakra.a
@@ -40,9 +27,7 @@ const NetworkIcon = ({ className }: Props) => {
         w="30px"
         h="30px"
         src={ iconSrc }
-        alt={ `${ config.chain.name } network icon` }
-        fallback={ <IconFallback/> }
-        filter={{ _dark: !config.UI.navigation.icon.dark ? INVERT_FILTER : undefined }}
+        alt="Somnia network icon"
         objectFit="contain"
         objectPosition="left"
       />
