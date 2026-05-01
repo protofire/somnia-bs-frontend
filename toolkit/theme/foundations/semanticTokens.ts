@@ -32,11 +32,14 @@ const semanticTokens: ThemingConfig['semanticTokens'] = {
       scrollbar: {
         thumb: { value: { _light: '{colors.blackAlpha.300}', _dark: '{colors.whiteAlpha.300}' } },
       },
+      selection: {
+        bg: { value: { _light: '#E3CFE7', _dark: '#754B7D' } },
+      },
     },
 
     // FOUNDATIONS
     heading: {
-      DEFAULT: { value: { _light: '{colors.blackAlpha.800}', _dark: '{colors.whiteAlpha.800}' } },
+      DEFAULT: { value: { _light: '{colors.gray.800}', _dark: '{colors.whiteAlpha.800}' } },
     },
     text: {
       primary: { value: { _light: '{colors.theme.text.primary._light}', _dark: '{colors.theme.text.primary._dark}' } },
@@ -69,6 +72,9 @@ const semanticTokens: ThemingConfig['semanticTokens'] = {
       solid: {
         bg: {
           DEFAULT: { value: { _light: '{colors.theme.button.primary._light}', _dark: '{colors.theme.button.primary._dark}' } },
+        },
+        text: {
+          DEFAULT: { value: { _light: '{colors.theme.button.primary.text._light}', _dark: '{colors.theme.button.primary.text._dark}' } },
         },
       },
       outline: {
@@ -113,7 +119,7 @@ const semanticTokens: ThemingConfig['semanticTokens'] = {
       },
       icon_background: {
         bg: {
-          DEFAULT: { value: { _light: '{colors.gray.50}', _dark: '{colors.whiteAlpha.50}' } },
+          DEFAULT: { value: { _light: '{colors.gray.100}', _dark: '{colors.whiteAlpha.50}' } },
         },
       },
       pagination: {
@@ -128,8 +134,8 @@ const semanticTokens: ThemingConfig['semanticTokens'] = {
         bg: {
           DEFAULT: {
             value: {
-              _light: heroBannerButton?._default?.background?.[0] || '{colors.theme.button.primary._light}',
-              _dark: heroBannerButton?._default?.background?.[1] || heroBannerButton?._default?.background?.[0] || '{colors.theme.button.primary._dark}',
+              _light: heroBannerButton?._default?.background?.[0] || '{colors.white}',
+              _dark: heroBannerButton?._default?.background?.[1] || heroBannerButton?._default?.background?.[0] || '{colors.white}',
             },
           },
           hover: {
@@ -148,8 +154,8 @@ const semanticTokens: ThemingConfig['semanticTokens'] = {
         fg: {
           DEFAULT: {
             value: {
-              _light: heroBannerButton?._default?.text_color?.[0] || '{colors.white}',
-              _dark: heroBannerButton?._default?.text_color?.[1] || heroBannerButton?._default?.text_color?.[0] || '{colors.white}',
+              _light: heroBannerButton?._default?.text_color?.[0] || '{colors.gray.700}',
+              _dark: heroBannerButton?._default?.text_color?.[1] || heroBannerButton?._default?.text_color?.[0] || '{colors.gray.700}',
             },
           },
           hover: {
@@ -289,7 +295,7 @@ const semanticTokens: ThemingConfig['semanticTokens'] = {
         error: { value: '{colors.text.error}' },
       },
       bg: {
-        DEFAULT: { value: { _light: '{colors.white}', _dark: '{colors.black}' } },
+        DEFAULT: { value: '{colors.bg.primary}' },
         readOnly: { value: { _light: '{colors.gray.200}', _dark: '{colors.gray.800}' } },
       },
       border: {
